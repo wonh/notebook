@@ -1,1 +1,58 @@
+# config jetson nano step by step
+1. check build-in package in OS image.
+    TensorRT 	/usr/src/tensorrt/samples/
+    CUDA /usr/local/cuda-/samples/
+    cuDNN	/usr/src/cudnn_samples_v7/
+    Multimedia API	/usr/src/tegra_multimedia_api/
+    VisionWorks	/usr/share/visionworks/sources/samples/ 
+                /usr/share/visionworks-tracking/sources/samples/ 
+                /usr/share/visionworks-sfm/sources/samples/
+    OpenCV	/usr/share/OpenCV/samples/
 
+    for CUDA:
+    1. run :
+      sudo vim  ~/.bashrc
+    2. then add below code in the end
+      export CUDA_HOME=/usr/local/cuda-10.0
+      export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
+      export PATH=/usr/local/cuda-10.0/bin:$PATH
+    3. run 
+      source ~/.bashrc
+      
+     for openCV:
+     run 
+       pkg-config opencv --modversion
+     and it shows 3.3.1
+     
+     for cuDNN:
+     run 
+      cd /usr/src/cudnn_samples_v7/mnistCUDNN
+      sudo make 
+      sudo chmod a+x mnistCUDNN
+      ./mnistCUDNN
+      
+2. install python package
+
+    2.1 install pip
+        sudo apt-get install python3-pip python3-dev
+        sudo vim /usr/bin/pip3
+        change 
+        """
+        from pip import main
+        if __name__ == '__main__':
+        sys.exit(main())
+        """
+        to 
+        """
+        from pip import __main__
+        if __name__ == '__main__':
+        sys.exit(__main__.main())
+        """
+        then run 
+        pip3 -V
+        
+    2.2 install packages for machine learning
+        sudo apt-get install python3-scipy
+        sudo apt-get install python3-pandas
+        sudo apt-get install python3-sklearn
+    
