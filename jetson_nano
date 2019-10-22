@@ -51,7 +51,15 @@
         then run 
         pip3 -V
         
-    2.2 install packages for machine learning
+    2.2 use virtual envirements
+    install 
+        sudo apt install -y python3-venv
+    create a folder /python-envs and a envirement venv
+        python3 -m venv ~/python-envs/env
+    active the virtual envirements
+        source ~/python-envs/env/bin/activate
+        
+    2.3 install packages for machine learning
         sudo apt-get install python3-scipy
         sudo apt-get install python3-pandas
         sudo apt-get install python3-sklearn
